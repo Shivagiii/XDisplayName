@@ -1,5 +1,17 @@
 .App {
-  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+.App>form{
+  display: flex;
+  flex-direction: column;
+
+  
+}
+form>button{
+  width: fit-content;
+
 }
 
 .App-logo {

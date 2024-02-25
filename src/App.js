@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [fullName,setFullName] = useState({
+    firstName:'',
+    lastName:''
+  })
+  const [display,setDisplay]= useState(null);
+  function handleChange(e){
+    setFullName({
+      ...fullName,
+      [e.target.name]:e.target.value,
+     
+
+    })
+console.log(fullName);
+  }
+ 
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setDisplay(fullName.firstName+" "+fullName.lastName)
+    
+    
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Full Name Display</h2>
+      <form onSubmit={handleSubmit}  >
+        <div><label for='firstName'>First Name:</label>
+          <input id='firstName' name='firstName' value={fullName.firstName} onChange={handleChange} required/>       
+        </div>
+        <div>
+        <label for='lastName'>Last Name:</label>
+        <input id='lastName' name='lastName'  value={fullName.lastName} onChange={handleChange} required/>
+        </div>
+        <button type='submit'>Submit</button>
+      </form>
+       {display ? (<p>FullName: {display}</p>):(<></>) }
     </div>
   );
 }
